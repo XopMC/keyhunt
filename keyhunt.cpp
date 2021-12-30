@@ -57,7 +57,7 @@ email: alberto.bsd@gmail.com
 
 #define FLIPBITLIMIT 10000000
 
-uint32_t  THREADBPWORKLOAD = 2097152;
+uint32_t  THREADBPWORKLOAD = 1048576;
 
 struct checksumsha256	{
 	char data[32];
@@ -119,7 +119,7 @@ char *raw_baseminikey = NULL;
 char *minikeyN = NULL;
 int minikey_n_limit;
 	
-const char *version = "0.2.211222 SSE Server Edition ,modify Dusky Kam 3,compiled by @XopMC for t.me/brythbit, developed by AlbertoBSD";
+const char *version = "0.2.211117 SSE Trick or treat ¡Beta! ,compiled by @XopMC for t.me/brythbit";
 
 #define CPU_GRP_SIZE 1024
 
@@ -343,7 +343,7 @@ uint64_t bsgs_m3;
 unsigned long int bsgs_aux;
 uint32_t bsgs_point_number;
 
-const char *str_limits_prefixs[7] = {"MegaKeys/s","GigaKeys/s","TeraKkeys/s","PetaKeys/s","ExaKeys/s","ZetaKeys/s","YotaKeys/s"};
+const char *str_limits_prefixs[7] = {"Mkeys/s","Gkeys/s","Tkeys/s","Pkeys/s","Ekeys/s","Zkeys/s","Ykeys/s"};
 const char *str_limits[7] = {"1000000","1000000000","1000000000000","1000000000000000","1000000000000000000","1000000000000000000000","1000000000000000000000000"};
 Int int_limits[7];
 
@@ -380,7 +380,7 @@ Int n_range_aux;
 Secp256K1 *secp;
 
 int main(int argc, char **argv)	{
-	char buffer[4048];
+	char buffer[2048];
 	char temporal[65];
 	char rawvalue[32];
 	struct tothread *tt;	//tothread
@@ -428,7 +428,7 @@ int main(int argc, char **argv)	{
 	rseed(clock() + time(NULL));
 	
 #if defined(_WIN64) && !defined(__CYGWIN__)
-	printf("[+] Version %s, developed by AlbertoBSD(Win64 build by KV)\n", version);
+	printf("[+] Version %s, developed by AlbertoBSD(Win64 build by @XopMC)\n", version);
 #else
 	printf("[+] Version %s, developed by AlbertoBSD\n",version);
 #endif
@@ -542,7 +542,7 @@ int main(int argc, char **argv)	{
 					}
 				}
 				else	{
-					fprintf(stderr,"[E] Invalid Minikey length %i : %s\n",strlen(optarg),optarg);
+					fprintf(stderr,"[E] Invalid Minikey length %li : %s\n",strlen(optarg),optarg);
 					exit(0);
 				}
 				
@@ -5975,6 +5975,7 @@ void memorycheck_bsgs()	{
 		exit(0);
 	}
 }
+
 
 void set_minikey(char *buffer,char *rawbuffer,int length)	{
 	for(int i = 0;  i < length; i++)	{
